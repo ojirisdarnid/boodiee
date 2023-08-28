@@ -1,1 +1,17 @@
-# Boodiee - Your Inventory Management Telegram Bot 📦  Hello! I'm Boodiee, your friendly inventory management assistant on Telegram. Tired of losing track of your items? Let me help you stay organized! Here's how I can simplify your life:  📝 **Add Items with Ease**: Use the `/add` command to effortlessly add new items to your inventory.  📋 **Instant Inventory Check**: Wondering what's in your inventory? Just type `/list` and I'll show you the complete list.  🔄 **Update Item Details**: Need to make changes? Whether it's a quantity update or a description change, the `/update` command has you covered.  🗑️ **Effortless Removal**: Have items you no longer need? Let's clean up! Deploy the `/delete` command to remove unwanted items.  🤖 **Seamless Assistance**: Just let me know what you need, and I'll be at your service, making inventory management a breeze.  Stay organized, save time, and let Boodiee transform the way you manage your inventory. Try me out on Telegram today!  [Start using Boodiee](https://t.me/boodiee_bot)
+# Boodiee - Your Inventory Management Telegram Bot 📦
+
+Hello! I'm Boodiee, your friendly inventory management assistant on Telegram. Tired of losing track of your items? Let me help you stay organized! Here's how I can simplify your life:
+
+📝 **Add Items with Ease**: Use the `/add` command to effortlessly add new items to your inventory.
+
+📋 **Instant Inventory Check**: Wondering what's in your inventory? Just type `/list` and I'll show you the complete list.
+
+🔄 **Update Item Details**: Need to make changes? Whether it's a quantity update or a description change, the `/update` command has you covered.
+
+🗑️ **Effortless Removal**: Have items you no longer need? Let's clean up! Deploy the `/delete` command to remove unwanted items.
+
+🤖 **Seamless Assistance**: Just let me know what you need, and I'll be at your service, making inventory management a breeze.
+
+Stay organized, save time, and let Boodiee transform the way you manage your inventory. Try me out on Telegram today!
+
+[Start using Boodiee](https://t.me/boodiee_bot)
