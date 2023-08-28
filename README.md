@@ -1,17 +1,20 @@
-# Boodiee - Your Inventory Management Telegram Bot 📦
+# Boodiee - Your Enhanced Inventory Management Telegram Bot 📦
 
-Hello! I'm Boodiee, your friendly inventory management assistant on Telegram. Tired of losing track of your items? Let me help you stay organized! Here's how I can simplify your life:
+Hey there! 👋 I'm Boodiee, your ultimate inventory management companion on Telegram. Need help keeping things organized? I've got you covered with a range of new features to streamline your inventory tasks:
 
-📝 **Add Items with Ease**: Use the `/add` command to effortlessly add new items to your inventory.
+📝 **Effortless Item Addition**: Seamlessly add new inventory items with the `/add_` command.
 
-📋 **Instant Inventory Check**: Wondering what's in your inventory? Just type `/list` and I'll show you the complete list.
+📋 **Instant Inventory Insight**: Curious about your inventory contents? Simply type `/list` to view the complete list.
 
-🔄 **Update Item Details**: Need to make changes? Whether it's a quantity update or a description change, the `/update` command has you covered.
+🔄 **Flexible Item Updates**: Want to modify item details? Utilize the `/update` command to make necessary changes.
 
-🗑️ **Effortless Removal**: Have items you no longer need? Let's clean up! Deploy the `/delete` command to remove unwanted items.
+🗑️ **Efficient Item Removal**: If you've got items to let go of, the `/delete` command is at your service.
 
-🤖 **Seamless Assistance**: Just let me know what you need, and I'll be at your service, making inventory management a breeze.
+🔍 **Smart Filtering**: Take advantage of the `/list` command's filtering options:
+   - Use the 'Ready' button to view ready items.
+   - Use the 'Sold' button to see items marked as sold.
+   - Use the 'PO' button to check items on purchase order.
 
-Stay organized, save time, and let Boodiee transform the way you manage your inventory. Try me out on Telegram today!
+Experience hassle-free inventory management like never before with Boodiee! Just let me know what you need, and I'll be here to assist you every step of the way. 🤖🌟
 
 [Start using Boodiee](https://t.me/boodiee_bot)
