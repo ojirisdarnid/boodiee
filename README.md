@@ -17,7 +17,7 @@ Hey there! 👋 I'm Boodiee, your go-to inventory management companion on Telegr
 
 💼 **Capital Calculation**: Need to calculate your capital? Just use the `/capital` command to get an overview of your investments.
 
-💰 **Profit Analysis**: To understand your profit, deploy the `/profit` command. Use the 'Int Market' button to filter items and see the profit from sales listed in the international market, and use the 'Indo Market' button to view profit from sales in the Indonesian market.
+💰 **Profit Calculation**: Want to know your profit? Calculate it with `/profit` command. You can view the profit data from sales in either the international market or the Indonesian market.
 
 Experience comprehensive inventory management with Boodiee! Just let me know what you need, and I'll be here to assist you every step of the way. 🤖🌟
 
