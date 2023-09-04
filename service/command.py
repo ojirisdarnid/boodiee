@@ -1,17 +1,22 @@
 from service.handler import is_user_registered
-from helper.gsheet import *
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, ConversationHandler, CallbackQueryHandler, CallbackContext)
+from telegram import Update
+from telegram.ext import ConversationHandler, CallbackContext
 from loguru import logger
+import uuid
 
+# Create unique ID for new item
+item_id = str(uuid.uuid4())
 # Define constants, Constants used for indexing or identification purposes
 NAME, CONFIRM_NAME = range(2)
+# Defining constants for conversation
+SELLER, THEME, SIZE, STOCK, BUYING_PRICE, SELLING_PRICE, STATUS, LIST_ON_MARKET, SELLING_PRICE_DOLLAR = range(9)
 
 # Function to start the bot
 def start(update, context: CallbackContext):
     uname = update.message.from_user.username
     user_id = update.message.from_user.id
     logger.info(f"User {uname} initiated the /start command.")
+    
 # Check if the user already has a name in the list
     if is_user_registered(user_id):
         logger.info(f"User {uname} already in the list.")
@@ -27,7 +32,7 @@ def help(update: Update, context: CallbackContext) -> None:
     logger.info(f"User {uname} initiated the /help command.")
 # Check if user_id is not in the list
     if not is_user_registered(user_id):
-        update.message.reply_text("Please register your name with /start before using this commands.")
+        update.message.reply_text("Please register your name with /start before using this command.")
     else:
         update.message.reply_text("Hello! I'm Boodiee, and I'm here to make your life easier. Need to keep track of things? No problem! Here's what I can assist you with :\n\n"
             "- To add items to your inventory, just use the command `/add`.\n"
@@ -37,3 +42,32 @@ def help(update: Update, context: CallbackContext) -> None:
             "- Got something you no longer need? Let's tidy up with `/delete`.\n"
             "- Want to know your profit? Calculate it with `/profit`. You can view the profit data from sales in either the international market or the Indonesian market..\n\n"
             "Just let me know what you need, and I'll be at your service!")
+        
+# Function to add new item to list
+def add(update: Update, context: CallbackContext) -> None:
+    uname = update.message.from_user.username
+    user_id = update.message.from_user.id
+    logger.info(f"User {uname} initiated the /add command.")
+    
+    if not is_user_registered(user_id):
+        update.message.reply_text("Please register your name with /start before using this command.")
+        return ConversationHandler.END
+
+    # Generate a unique item ID using UUID
+    item_id = str(uuid.uuid4())
+    context.user_data['item_id'] = item_id  
+
+    # Reset all item data fields
+    context.user_data['seller'] = ""
+    context.user_data['theme'] = ""
+    context.user_data['size'] = ""
+    context.user_data['stock'] = ""
+    context.user_data['buying_price'] = ""
+    context.user_data['selling_price'] = ""
+    context.user_data['selling_price_dollar'] = ""
+    context.user_data['status'] = ""
+
+    update.message.reply_text("Great! Let's start adding a new item to your inventory.")
+    update.message.reply_text("First, please provide the seller's name.")
+    
+    return 0
