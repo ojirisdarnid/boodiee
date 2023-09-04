@@ -1,12 +1,12 @@
-import logging, model
+import logging, config.model as model
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext, CallbackQueryHandler
-import gsheet
+import helper.gsheet as gsheet
 
-# next_item_id = 1
-# available_item_ids = set()
-# user_name = {}
-# inventory = {}
+next_item_id = 1
+available_item_ids = set()
+user_name = {}
+inventory = {}
 logger = logging.getLogger(__name__)
 
 
@@ -65,19 +65,18 @@ def add(update: Update, context: CallbackContext) -> None:
         return    
     seller, theme, size, buy, sell, status = params
     
-    # # Mengecek apakah pengguna memiliki inventaris atau belum  
-    # if user_id not in inventory:
-    #     inventory[user_id] = []
+    # Mengecek apakah pengguna memiliki inventaris atau belum  
+    if user_id not in inventory:
+        inventory[user_id] = []
         
-    # if available_item_ids:
-    #     item_id = available_item_ids.pop()
-    # else:
-    #     item_id = next_item_id
-    #     next_item_id += 1
+    if available_item_ids:
+        item_id = available_item_ids.pop()
+    else:
+        item_id = next_item_id
+        next_item_id += 1
         
     # Membuat objek Item baru dan menambahkannya ke inventaris pengguna
-    # item = model.Item(item_id, seller, theme, size, buy, sell, status)
-    next_item_id = gsheet.add_item(seller, theme, size, buy, sell, status)
+    item = model.Item(item_id, seller, theme, size, buy, sell, status)
     inventory[user_id].append(item)
 
     logger.info(f"Item '{item.theme}' has been added to inventory for user {user_name}.")
