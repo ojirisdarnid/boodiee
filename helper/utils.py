@@ -18,6 +18,7 @@ def get_unique_item_id():
 
 # Penggunaan:
 item_id = get_unique_item_id()
+
 # Tentukan folder tempat Anda ingin menyimpan log
 log_folder = "logs"
 

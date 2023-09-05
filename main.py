@@ -1,13 +1,14 @@
-import sys
+import sys, warnings
 from loguru import logger
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, ConversationHandler, CallbackQueryHandler)
 from service.command import start, help, add
 from service.handler import save_name, seller_name, theme, size, stock, buying_price, selling_price, list_on_market, selling_price_dollar, inline_button
 from helper.utils import log_file, retention
 from config.base import TOKEN, StartConstant, ConversationConstant
-        
+
 # Main Function for running bot
 def main() -> None:
+    warnings.filterwarnings("ignore", category=UserWarning)
     logger.info("Starting the bot")
     logger.add(sink=sys.stdout, level="DEBUG", format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}")
     logger.add(log_file, rotation="10 MB", retention=retention, level="DEBUG", format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}")
@@ -44,7 +45,6 @@ def main() -> None:
     # Menambahkan handler perintah sesuai dengan fungsinya
     dispatcher.add_handler(conv_handler)
     dispatcher.add_handler(add_conv_handler)
-    # dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("help", help))
     # dispatcher.add_handler(CommandHandler("add", add))
     # dispatcher.add_handler(CommandHandler("update", command.update))
