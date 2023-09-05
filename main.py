@@ -1,15 +1,10 @@
-import os, sys
+import sys
 from loguru import logger
-from dotenv import load_dotenv
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, ConversationHandler, CallbackQueryHandler)
 from service.command import start, help, add
-from service.handler import save_name, seller_name, theme, size, stock, buying_price, selling_price, status,list_on_market, selling_price_dollar, inline_button
-from helper.log import *
-
-# Load environment variables from secret/.env file
-secret = 'secret/.env'
-load_dotenv(dotenv_path=secret)
-TOKEN = os.getenv("TOKEN")
+from service.handler import save_name, seller_name, theme, size, stock, buying_price, selling_price, list_on_market, selling_price_dollar, inline_button
+from helper.utils import log_file, retention
+from config.base import TOKEN, StartConstant, ConversationConstant
         
 # Main Function for running bot
 def main() -> None:
@@ -24,7 +19,7 @@ def main() -> None:
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('start', start)],
         states={
-            0: [MessageHandler(Filters.text & ~Filters.command, save_name)]
+            StartConstant.NAME: [MessageHandler(Filters.text & ~Filters.command, save_name)]
         },
         fallbacks=[]
     )
@@ -33,15 +28,15 @@ def main() -> None:
     add_conv_handler = ConversationHandler(
         entry_points=[CommandHandler('add', add)],
         states={
-            0: [MessageHandler(Filters.text & ~Filters.command, seller_name)],
-            1: [MessageHandler(Filters.text & ~Filters.command, theme)],
-            2: [MessageHandler(Filters.text & ~Filters.command, size)],
-            3: [MessageHandler(Filters.text & ~Filters.command, stock)],
-            4: [MessageHandler(Filters.text & ~Filters.command, buying_price)],
-            5: [MessageHandler(Filters.text & ~Filters.command, selling_price)],
-            6: [MessageHandler(Filters.text & ~Filters.command, status)],
-            7: [MessageHandler(Filters.text & ~Filters.command, list_on_market)],
-            8: [MessageHandler(Filters.text & ~Filters.command, selling_price_dollar)],
+            ConversationConstant.SELLER: [MessageHandler(Filters.text & ~Filters.command, seller_name)],
+            ConversationConstant.THEME: [MessageHandler(Filters.text & ~Filters.command, theme)],
+            ConversationConstant.SIZE: [MessageHandler(Filters.text & ~Filters.command, size)],
+            ConversationConstant.STOCK: [MessageHandler(Filters.text & ~Filters.command, stock)],
+            ConversationConstant.BUYING_PRICE: [MessageHandler(Filters.text & ~Filters.command, buying_price)],
+            ConversationConstant.SELLING_PRICE: [MessageHandler(Filters.text & ~Filters.command, selling_price)],
+            ConversationConstant.INLINE_BUTTON: [CallbackQueryHandler(inline_button)],
+            ConversationConstant.LIST_ON_MARKET: [CallbackQueryHandler(list_on_market)],
+            ConversationConstant.SELLING_PRICE_DOLLAR: [MessageHandler(Filters.text & ~Filters.command, selling_price_dollar)],
         },
         fallbacks=[],
     )
@@ -56,7 +51,6 @@ def main() -> None:
     # dispatcher.add_handler(CommandHandler("delete", command.delete))
     # dispatcher.add_handler(CommandHandler("list", command.list))
     # Adding a CallbackQueryHandler for inline button handling
-    dispatcher.add_handler(CallbackQueryHandler(inline_button))
     
     # Memulai polling untuk mendapatkan update dari Telegram
     updater.start_polling()

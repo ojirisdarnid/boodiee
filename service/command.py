@@ -1,15 +1,9 @@
-from service.handler import is_user_registered
 from telegram import Update
 from telegram.ext import ConversationHandler, CallbackContext
 from loguru import logger
-import uuid
-
-# Create unique ID for new item
-item_id = str(uuid.uuid4())
-# Define constants, Constants used for indexing or identification purposes
-NAME, CONFIRM_NAME = range(2)
-# Defining constants for conversation
-SELLER, THEME, SIZE, STOCK, BUYING_PRICE, SELLING_PRICE, STATUS, LIST_ON_MARKET, SELLING_PRICE_DOLLAR = range(9)
+from service.handler import is_user_registered
+from helper.utils import item_id
+from config.base import ConversationConstant, StartConstant
 
 # Function to start the bot
 def start(update, context: CallbackContext):
@@ -19,11 +13,8 @@ def start(update, context: CallbackContext):
     
 # Check if the user already has a name in the list
     if is_user_registered(user_id):
-        logger.info(f"User {uname} already in the list.")
-        update.message.reply_text(f"You've already introduced yourself. You can use /help to see what i can help you with.")
-    else:
         update.message.reply_text(f"Hi there! Welcome to Boodiee. I'm here to help you manage your inventory. To get started, could you please tell me your name?")
-    return NAME
+    return StartConstant.NAME
 
 # Function to provide help and list available commands
 def help(update: Update, context: CallbackContext) -> None:
@@ -53,8 +44,6 @@ def add(update: Update, context: CallbackContext) -> None:
         update.message.reply_text("Please register your name with /start before using this command.")
         return ConversationHandler.END
 
-    # Generate a unique item ID using UUID
-    item_id = str(uuid.uuid4())
     context.user_data['item_id'] = item_id  
 
     # Reset all item data fields
@@ -66,8 +55,9 @@ def add(update: Update, context: CallbackContext) -> None:
     context.user_data['selling_price'] = ""
     context.user_data['selling_price_dollar'] = ""
     context.user_data['status'] = ""
+    context.user_data['list_on_market'] = ""
 
     update.message.reply_text("Great! Let's start adding a new item to your inventory.")
     update.message.reply_text("First, please provide the seller's name.")
     
-    return 0
+    return ConversationConstant.SELLER
