@@ -26,7 +26,7 @@ def help(update: Update, context: CallbackContext) -> None:
         update.message.reply_text("Please register your name with /start before using this command.")
     else:
         update.message.reply_text("Hello! I'm Boodiee, and I'm here to make your life easier. Need to keep track of things? No problem! Here's what I can assist you with :\n\n"
-            "- To add items to your inventory, just use the command `/add`.\n"
+            "- To add items to your inventory, just use the command `/add` and if you ever change your mind, simply invoke the `/cancel` command to gracefully exit.\n"
             "- Curious about what's in your inventory? Type `/list` to see the whole list.\n"
             "- You can also use filter buttons in the `/list` to filter items by status (Ready, Sold, or PO).\n"
             "- If you want to update any item's details, the command you're looking for is `/update`.\n"

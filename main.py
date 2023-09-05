@@ -2,7 +2,8 @@ import sys, warnings
 from loguru import logger
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, ConversationHandler, CallbackQueryHandler)
 from service.command import start, help, add
-from service.handler import save_name, seller_name, theme, size, stock, buying_price, selling_price, list_on_market, selling_price_dollar, inline_button
+from service.handler import (save_name, seller_name, theme, size, stock, buying_price, selling_price,
+                             list_on_market, selling_price_dollar, inline_button, cancel)
 from helper.utils import log_file, retention
 from config.base import TOKEN, StartConstant, ConversationConstant
 
@@ -39,7 +40,7 @@ def main() -> None:
             ConversationConstant.LIST_ON_MARKET: [CallbackQueryHandler(list_on_market)],
             ConversationConstant.SELLING_PRICE_DOLLAR: [MessageHandler(Filters.text & ~Filters.command, selling_price_dollar)],
         },
-        fallbacks=[],
+        fallbacks=[CommandHandler('cancel', cancel)],
     )
     
     # Menambahkan handler perintah sesuai dengan fungsinya

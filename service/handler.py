@@ -152,7 +152,7 @@ def selling_price_dollar(update: Update, context: CallbackContext) -> int:
 
 def cancel(update, context):
     update.message.reply_text("Item listing process canceled.")
-    USER_DATA.pop(update.message.from_user.id, None)
+    context.user_data(update.message.from_user.id, None)
     return ConversationHandler.END
 
 def save_item_to_spreadsheet(data, item_id):
