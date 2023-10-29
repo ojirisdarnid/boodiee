@@ -1,6 +1,7 @@
-import logging, model
+import logging, config.model as model
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext, CallbackQueryHandler
+import helper.gsheet as gsheet
 
 next_item_id = 1
 available_item_ids = set()
@@ -152,10 +153,6 @@ def delete(update: Update, context: CallbackContext) -> None:
             update.message.reply_text(f"Item with number '{number}' not found in your inventory, please check the list again.")
     else:
         update.message.reply_text(f"Your Inventory is Empty. Add an item first using /add .")
-    
-    # # Mereset counter next_item_id untuk pengguna jika seluruh item dihapus
-    # if user_id in inventory and len(inventory[user_id]) == 0:
-    #     next_item_id[user_id] = 1
             
 # Fungsi /list
 def list(update: Update, context: CallbackContext) -> None:
